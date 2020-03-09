@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 18
-  productGUID: 13396c8b6dc024f5291df3cba576679c
+  productGUID: 44e2c36c697a04e29a55fd3a8d605a43
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: '!Geometry-Dash'
+  productName: New Unity Project
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -104,6 +104,7 @@ PlayerSettings:
   xboxOneMonoLoggingLevel: 0
   xboxOneLoggingLevel: 1
   xboxOneDisableEsram: 0
+  xboxOneEnableTypeOptimization: 0
   xboxOnePresentImmediateThreshold: 0
   switchQueueCommandMemory: 0
   switchQueueControlMemory: 16384
@@ -591,9 +592,9 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: f723c94f-0acf-472e-adf0-efdbfee438be
+  cloudProjectId: ce86ffa1-34d4-4851-b6b7-8b6646cff663
   framebufferDepthMemorylessMode: 0
-  projectName: '!Geometry-Dash'
+  projectName: New Unity Project
   organizationId: triplezko
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
