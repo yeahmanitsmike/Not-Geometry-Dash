@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     private new Collider2D collider;
+    private Collider2D edgie;
 
     public float moveSpeed = 5f;
     public float jumpStrength = 5f;
@@ -24,7 +25,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpStrength);
+
+            
         }
 
     }
