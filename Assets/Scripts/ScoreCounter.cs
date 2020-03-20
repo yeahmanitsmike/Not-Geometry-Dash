@@ -21,7 +21,8 @@ public class ScoreCounter : MonoBehaviour
 	void Update()
 	{
 		iterations++;
-		if (iterations > 60) {
+		if (iterations > 60)
+		{
 			score++;
 			iterations = 0;
 		}
