@@ -131,8 +131,8 @@ GameObject:
   m_Component:
   - component: {fileID: 50787660}
   - component: {fileID: 50787663}
-  - component: {fileID: 50787662}
   - component: {fileID: 50787661}
+  - component: {fileID: 50787662}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -168,9 +168,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 50787659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d5ec1caf2646df2bd98119e4bbca87, type: 3}
+  m_Script: {fileID: 11500000, guid: 788ef62de3b35415f94dc50937bf8c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textBox: {fileID: 0}
+  score: 0
+  iterations: 0
 --- !u!114 &50787662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +299,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  theGameManager: {fileID: 0}
 --- !u!212 &71233771
 SpriteRenderer:
   m_ObjectHideFlags: 0
