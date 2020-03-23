@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public LayerMask groundLayer;
 
+    public GameManager theGameManager;
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -27,5 +29,13 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpStrength);
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "KillObject")
+        {
+            theGameManager.Restart();
+        }
     }
 }
