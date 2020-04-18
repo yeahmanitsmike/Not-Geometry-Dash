@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,7 @@ public class ScoreCounter : MonoBehaviour
 {
 
 	public Text textBox;
-	public static int score;
-    public int iterations;
+	public int score, iterations;
 
 	// Start is called before the first frame update
 	void Start()
@@ -21,8 +21,7 @@ public class ScoreCounter : MonoBehaviour
 	void Update()
 	{
 		iterations++;
-		if (iterations > 60)
-		{
+		if (iterations > 60) {
 			score++;
 			iterations = 0;
 		}
