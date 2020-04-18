@@ -4,12 +4,13 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     private new Collider2D collider;
-    private Collider2D edgie;
 
     public float moveSpeed = 5f;
     public float jumpStrength = 5f;
     public bool isGrounded;
     public LayerMask groundLayer;
+
+    public GameManager theGameManager;
 
     private void Start()
     {
@@ -25,11 +26,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpStrength);
-
-            
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "KillObject")
+        {
+            theGameManager.Restart();
+        }
     }
 }
