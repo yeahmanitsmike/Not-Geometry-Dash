@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
 
     private Animator myAnimator;
 
+    public AudioSource backgroundMusic;
+    public AudioSource jumpSound;
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -22,7 +25,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {
+    { 
         rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
 
         isGrounded = Physics2D.IsTouchingLayers(collider, groundLayer);
@@ -42,6 +45,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "KillObject")
         {
             theGameManager.Restart();
+            backgroundMusic.Stop();
+            
         }
     }
 }
