@@ -12,10 +12,13 @@ public class PlayerController : MonoBehaviour
 
     public GameManager theGameManager;
 
+    private Animator myAnimator;
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
+        myAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -28,6 +31,9 @@ public class PlayerController : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpStrength);
         }
+
+        myAnimator.SetFloat("Speed", rigidBody.velocity.x);
+        myAnimator.SetBool("Grounded", isGrounded);
 
     }
 
