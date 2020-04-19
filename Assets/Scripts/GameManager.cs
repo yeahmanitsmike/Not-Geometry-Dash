@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour
 {
     public PlayerController thePlayer;
     private Vector3 PlayerStartPoint;
-    public AudioSource backgroundMusic;
 
     void Start()
     {
@@ -25,7 +24,6 @@ public class GameManager : MonoBehaviour
 
         thePlayer.transform.position = PlayerStartPoint;
         thePlayer.gameObject.SetActive(true);
-        backgroundMusic.Play();
 
 
         ScoreCounter.score = 0;
