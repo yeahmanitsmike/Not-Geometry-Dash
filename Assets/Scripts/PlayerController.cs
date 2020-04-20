@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 
     private Animator myAnimator;
 
-    public AudioSource backgroundMusic;
     public AudioSource jumpSound;
 
     private void Start()
@@ -22,9 +21,6 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         myAnimator = GetComponent<Animator>();
-		backgroundMusic = GameObject
-			.FindGameObjectWithTag("BackgroundAudio")
-			.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -48,8 +44,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "KillObject")
         {
             theGameManager.Restart();
-            backgroundMusic.Stop();
-            backgroundMusic.Play();
         }
     }
 }
