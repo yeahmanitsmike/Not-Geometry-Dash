@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         StartCoroutine("RestartCo");
+        ScoreCounter.score = 0;
     }
 
     public IEnumerator RestartCo()
@@ -27,7 +28,5 @@ public class GameManager : MonoBehaviour
         thePlayer.gameObject.SetActive(true);
         backgroundMusic.Play();
 
-
-        ScoreCounter.score = 0;
     }
 }

@@ -56,7 +56,18 @@ public class PlatformGenerator : MonoBehaviour
 
             platformSelector = Random.Range(0, theObjectPools.Length);
 
-            transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2)+ distanceBetween, transform.position.y, transform.position.z);
+            heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+
+            if(heightChange > maxHeight)
+            {
+                heightChange = maxHeight;
+            }
+            else if (heightChange < minHeight)
+            {
+                heightChange = minHeight;
+            }
+
+            transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
 
             //Instantiate(/*thePlatform*/ thePlatforms[platformSelector], transform.position, transform.rotation);
             GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();

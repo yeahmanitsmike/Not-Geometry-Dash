@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public LayerMask groundLayer;
 
+    public float jumpTime;
+    private float jumpTimeCounter;
+
     public GameManager theGameManager;
 
     private Animator myAnimator;
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         myAnimator = GetComponent<Animator>();
+        jumpTimeCounter = jumpTime;
     }
 
     private void Update()
@@ -33,6 +37,25 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpStrength);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (jumpTimeCounter > 0)
+            {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpStrength);
+                jumpTimeCounter -= Time.deltaTime;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            jumpTimeCounter = 0;
+        }
+
+        if (isGrounded)
+        {
+            jumpTimeCounter = jumpTime;
         }
 
         myAnimator.SetFloat("Speed", rigidBody.velocity.x);
