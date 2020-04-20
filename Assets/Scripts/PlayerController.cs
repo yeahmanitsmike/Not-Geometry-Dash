@@ -3,15 +3,24 @@
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
-    private new Collider2D collider;
+   // private new Collider2D collider;
 
+    //Player movement vars
     public float moveSpeed = 5f;
-    public float jumpStrength = 5f;
-    public bool isGrounded;
-    public LayerMask groundLayer;
+    public float speedMulitplier;
+    public float speedIncreaseMilestone;
+    private float speedMilestoneCount;
 
+    //Player jump vars
+    public float jumpStrength = 5f;
     public float jumpTime;
     private float jumpTimeCounter;
+
+    //Ground vars
+    public bool isGrounded;
+    public LayerMask groundLayer;
+    public Transform groundCheck;
+    public float groundCheckRadius;
 
     public GameManager theGameManager;
 
@@ -23,16 +32,26 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
+       // collider = GetComponent<Collider2D>();
         myAnimator = GetComponent<Animator>();
         jumpTimeCounter = jumpTime;
+        speedMilestoneCount = speedIncreaseMilestone;
     }
 
     private void Update()
     { 
         rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
 
-        isGrounded = Physics2D.IsTouchingLayers(collider, groundLayer);
+        //isGrounded = Physics2D.IsTouchingLayers(collider, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (transform.position.x > speedMilestoneCount)
+        {
+            speedMilestoneCount += speedIncreaseMilestone;
+            speedIncreaseMilestone = speedIncreaseMilestone * speedMulitplier;
+
+            moveSpeed = moveSpeed * speedMulitplier;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
