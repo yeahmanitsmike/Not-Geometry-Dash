@@ -4,11 +4,12 @@ public class CameraController : MonoBehaviour
 {
 
     public PlayerController player;
-    private Vector2 lastPlayerPosition;
+    private Vector3 lastPlayerPosition;
     private float distanceToMove;
 
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         lastPlayerPosition = player.transform.position;
     }
 
