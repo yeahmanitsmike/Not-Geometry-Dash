@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 71233773}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  speedMulitplier: 1.05
+  speedMulitplier: 1.1
   speedIncreaseMilestone: 100
   jumpStrength: 10
   jumpTime: 0.25
@@ -434,7 +434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71233767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.89, y: 6.63, z: -0.11}
+  m_LocalPosition: {x: -12.1, y: 4.52, z: -0.11}
   m_LocalScale: {x: 0.52221495, y: 0.64573836, z: 1}
   m_Children:
   - {fileID: 1779113091}
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1877177932340267050, guid: 6ecb5cc1251855c4e8035f2e0dea1589,
     type: 3}
-  pooledAmount: 10
+  pooledAmount: 3
 --- !u!1 &372016525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866587990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: 34.3, z: 0}
+  m_LocalPosition: {x: 19.5, y: 34.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1985103100}
@@ -1277,7 +1277,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d8d1d4a4f8c204f418b554a660da9d52, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.29
+  m_Volume: 0.202
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1492,7 +1492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 8582175902100430728, guid: 9cfd2c57db2d8004ab495a40b52194e8,
     type: 3}
-  pooledAmount: 10
+  pooledAmount: 3
 --- !u!4 &1176014618
 Transform:
   m_ObjectHideFlags: 0
@@ -1960,7 +1960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507117537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.75, y: -0.5, z: 0}
+  m_LocalPosition: {x: -34, y: -5.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 519420032}
@@ -2210,7 +2210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560917880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.37, y: -0.21, z: 10}
+  m_LocalPosition: {x: 0.37, y: 0.16, z: 10}
   m_LocalScale: {x: 5.4348984, y: 2.5590587, z: 1}
   m_Children: []
   m_Father: {fileID: 519420032}
@@ -2311,7 +2311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 4928003788116111624, guid: 95918e1f3b46bfc49957543cc1ad6a18,
     type: 3}
-  pooledAmount: 10
+  pooledAmount: 3
 --- !u!1 &1673859853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2551,7 +2551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 3547424758081833344, guid: 2aec2c0f3a991ff4fb4378c0b9fddbbc,
     type: 3}
-  pooledAmount: 10
+  pooledAmount: 3
 --- !u!1 &1833196135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,6 +2583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thePlayer: {fileID: 71233770}
   backgroundMusic: {fileID: 0}
+  platformGenerator: {fileID: 866587992}
 --- !u!4 &1833196137
 Transform:
   m_ObjectHideFlags: 0
@@ -2603,50 +2604,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1020628560}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1963892229
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1963892231}
-  - component: {fileID: 1963892230}
-  m_Layer: 0
-  m_Name: PlatformDestroyer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1963892230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963892229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac9e69b5d4cabf6459114d65bc463548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platformDestructionPoint: {fileID: 1507117537}
---- !u!4 &1963892231
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963892229}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.80964, y: 19.31973, z: -5.0689864}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1985103099
 GameObject:
   m_ObjectHideFlags: 0

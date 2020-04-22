@@ -9,7 +9,10 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float speedMulitplier;
     public float speedIncreaseMilestone;
+    private float speedIncreaseMilestoneStore;
     private float speedMilestoneCount;
+    private float moveSpeedStore;
+    private float speedMilestoneCountStore;
 
     //Player jump vars
     public float jumpStrength = 5f;
@@ -36,6 +39,9 @@ public class PlayerController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         jumpTimeCounter = jumpTime;
         speedMilestoneCount = speedIncreaseMilestone;
+        moveSpeedStore = moveSpeed;
+        speedMilestoneCountStore = speedMilestoneCount;
+        speedIncreaseMilestoneStore = speedIncreaseMilestone;
     }
 
     private void Update()
@@ -87,6 +93,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "KillObject")
         {
             theGameManager.Restart();
+            moveSpeed = moveSpeedStore;
+            speedMilestoneCount = speedMilestoneCountStore;
+            speedIncreaseMilestone = speedIncreaseMilestoneStore;
             backgroundMusic.Stop();
             
         }

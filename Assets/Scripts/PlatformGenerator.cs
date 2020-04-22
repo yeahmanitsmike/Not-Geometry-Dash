@@ -7,8 +7,8 @@ public class PlatformGenerator : MonoBehaviour
 
     public GameObject thePlatform;
     public Transform generationPoint;
-    public float distanceBetween;
 
+    public float distanceBetween;
     private float platformWidth;
 
     public float distanceBetweenMin;
@@ -25,7 +25,8 @@ public class PlatformGenerator : MonoBehaviour
     public float maxHeightChange;
     private float heightChange;
     public Transform maxHeightPoint;
-    
+
+    private Stack levelDesigner;
 
 
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class PlatformGenerator : MonoBehaviour
 
         minHeight = transform.position.y;
         maxHeight = maxHeightPoint.position.y;
+
 
     }
 
@@ -79,6 +81,7 @@ public class PlatformGenerator : MonoBehaviour
             transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
 
         }
+       
 
 
     }
