@@ -6,6 +6,8 @@ public class PlatformGenerator : MonoBehaviour
 {
 
     public GameObject thePlatform;
+    public GameObject endPlatform;
+    private bool isEndPlatformSpawn;
     public Transform generationPoint;
 
     public float distanceBetween;
@@ -73,78 +75,88 @@ public class PlatformGenerator : MonoBehaviour
         maxHeight = maxHeightPoint.position.y;
 
 
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if(transform.position.x < generationPoint.position.x)
+        if (transform.position.x < generationPoint.position.x)
         {
-            size = (int)levelSizeDesign.Dequeue();
-            height = (int)levelHeightDesign.Dequeue();
-            distance = (int)levelDistanceDesign.Dequeue();
+            if (!(levelDistanceDesign.Count == 0 && levelHeightDesign.Count == 0 && levelSizeDesign.Count == 0))
+            {
+                size = (int)levelSizeDesign.Dequeue();
+                height = (int)levelHeightDesign.Dequeue();
+                distance = (int)levelDistanceDesign.Dequeue();
 
-            /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
-            *distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
-            */
-            if (distanceBetweenMin + distance > distanceBetweenMax)
-            {
-                distanceBetween = distanceBetweenMax;
-            } 
-            else
-            {
-                distanceBetween = distanceBetweenMin + distance;
+                /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
+                *distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+                */
+                if (distanceBetweenMin + distance > distanceBetweenMax)
+                {
+                    distanceBetween = distanceBetweenMax;
+                }
+                else
+                {
+                    distanceBetween = distanceBetweenMin + distance;
+                }
+
+                /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
+                *platformSelector = Random.Range(0, theObjectPools.Length);
+                */
+
+                if (size > 3)
+                {
+                    platformSelector = 3;
+                }
+                else if (size < 3)
+                {
+                    platformSelector = 0;
+                }
+                else
+                {
+                    platformSelector = size;
+                }
+
+                /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
+                *heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+                */
+
+                heightChange = minHeight + height;
+
+                if (heightChange > maxHeight)
+                {
+                    heightChange = maxHeight;
+                }
+                else if (heightChange < minHeight)
+                {
+                    heightChange = minHeight;
+                }
+
+                transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
+
+                //Instantiate(/*thePlatform*/ thePlatforms[platformSelector], transform.position, transform.rotation);
+                GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();
+
+                newPlatform.transform.position = transform.position;
+                newPlatform.transform.rotation = transform.rotation;
+                newPlatform.SetActive(true);
+
+                transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
+
+            } else
+			{
+                if (!isEndPlatformSpawn)
+				{
+                    transform.position = new Vector3(transform.position.x + 6, transform.position.y, transform.position.z);
+                    Instantiate(endPlatform, transform.position, transform.rotation);
+
+                    isEndPlatformSpawn = true;
+                }
+
             }
-
-            /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
-            *platformSelector = Random.Range(0, theObjectPools.Length);
-            */
-
-            if (size > 3)
-            {
-                platformSelector = 3;
-            }
-            else if (size < 3)
-            {
-                platformSelector = 0;
-            }
-            else
-            {
-                platformSelector = size;
-            }
-
-            /*THIS CODE WILL CHANGE IT TO A RANDOME LEVEL
-            *heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
-            */
-
-            heightChange = minHeight + height;
-
-            if (heightChange > maxHeight)
-            {
-                heightChange = maxHeight;
-            }
-            else if (heightChange < minHeight)
-            {
-                heightChange = minHeight;
-            }
-
-            transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
-
-            //Instantiate(/*thePlatform*/ thePlatforms[platformSelector], transform.position, transform.rotation);
-            GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();
-
-            newPlatform.transform.position = transform.position;
-            newPlatform.transform.rotation = transform.rotation;
-            newPlatform.SetActive(true);
-
-            transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
-
         }
        
-
 
     }
 }
