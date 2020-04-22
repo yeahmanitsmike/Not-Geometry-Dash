@@ -10,14 +10,12 @@ public class ScoreCounter : MonoBehaviour
 	public static int score;
     public int iterations;
 
-	// Start is called before the first frame update
 	void Start()
 	{
 		textBox = GetComponent<Text>();
 		score = 0;
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		iterations++;
