@@ -20,6 +20,12 @@ public class PlatformGenerator : MonoBehaviour
     private int platformSelector;
     private float[] platformWidths;
 
+    public float randomEnemyThreshold;
+    public ObjectPooler enemyPool;
+
+    private CoinGeneration myCoinGenerator;
+    public float randomCoinThreshold;
+
 
     public ObjectPooler[] theObjectPools;
     private float minHeight;
@@ -74,7 +80,7 @@ public class PlatformGenerator : MonoBehaviour
         minHeight = transform.position.y;
         maxHeight = maxHeightPoint.position.y;
 
-
+        myCoinGenerator = FindObjectOfType<CoinGeneration>();
     }
 
     // Update is called once per frame
@@ -141,6 +147,39 @@ public class PlatformGenerator : MonoBehaviour
                 newPlatform.transform.position = transform.position;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true);
+
+
+                float xpos = newPlatform.GetComponent<Transform>().position.x;
+                float ypos = newPlatform.GetComponent<Transform>().position.y;
+                float xoff = newPlatform.GetComponent<BoxCollider2D>().offset.x;
+                float yoff = newPlatform.GetComponent<BoxCollider2D>().offset.y;
+
+                if (Random.Range(0f, 100f) < randomCoinThreshold)
+                {
+
+                    if (newPlatform.GetComponent<BoxCollider2D>().size.x > 3.5)
+                    {
+                        myCoinGenerator.Spawn3Coins(new Vector3(xpos + xoff, ypos + yoff + 1f, transform.position.z));
+
+                    }
+                    else
+                    {
+                        myCoinGenerator.Spawn1Coins(new Vector3(xpos + xoff, ypos + yoff + 1f, transform.position.z));
+                    }
+                }
+
+                if (Random.Range(0f, 100f) < randomEnemyThreshold && newPlatform.GetComponent<BoxCollider2D>().size.x > 3.5)
+				{
+                    GameObject newEnemy = enemyPool.GetPooledObject();
+                    
+                    float enemyXPos = Random.Range(-platformWidths[platformSelector] / 2 + 0.5f, platformWidths[platformSelector] / 2 - 0.5f);
+                    
+                    Vector3 enemyPosition = new Vector3(enemyXPos + xpos + xoff, ypos + yoff + 0.7f, 0f);
+
+                    newEnemy.transform.position = enemyPosition;
+                    newEnemy.transform.rotation = newEnemy.transform.rotation;
+                    newEnemy.SetActive(true);
+				}
 
                 transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
 

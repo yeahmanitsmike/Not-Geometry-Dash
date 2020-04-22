@@ -30,4 +30,9 @@ public class ScoreCounter : MonoBehaviour
 			textBox.text = "Score: " + score.ToString();
 		}
 	}
+
+    public void AddScore(int pointsToAdd)
+	{
+		score += pointsToAdd;
+	}
 }
