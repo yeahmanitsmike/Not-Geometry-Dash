@@ -26,12 +26,39 @@ public class PlatformGenerator : MonoBehaviour
     private float heightChange;
     public Transform maxHeightPoint;
 
-    private Stack levelDesigner;
+    /*******************/
+    /*LEVEL DESIGN VARS*/
+    /*******************/
+    private Queue levelSizeDesign;
+    private Queue levelHeightDesign;
+    private Queue levelDistanceDesign;
+    //Platform Height is between 0 and 5 INTEGER
+    public int[] level1_PlatformHeight;
+    //Platform Size is either:
+        //0 = 3 block platform, 1 = 5 block platform, 2 = 7 block platform, 3 = 9 block platform
+    public int[] level1_PlatformSize;
+    //Platform Distance is between 0 and Max Distance
+    public int[] level1_PlatformDistance;
+    private int distance;
+    private int height;
+    private int size;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //Initializing Queues
+        levelHeightDesign = new Queue();
+        levelSizeDesign = new Queue();
+        levelDistanceDesign = new Queue();
+
+        //Loop that loads the Queue
+        for (int i = 0; i < level1_PlatformHeight.Length; i++)
+        {
+            levelHeightDesign.Enqueue(level1_PlatformHeight[i]);
+            levelSizeDesign.Enqueue(level1_PlatformSize[i]);
+            levelDistanceDesign.Enqueue(level1_PlatformDistance[i]);
+        }
 
         //platformWidth = thePlatform.GetComponent<BoxCollider2D>().size.x;
 
@@ -46,6 +73,8 @@ public class PlatformGenerator : MonoBehaviour
         maxHeight = maxHeightPoint.position.y;
 
 
+
+
     }
 
     // Update is called once per frame
@@ -54,13 +83,30 @@ public class PlatformGenerator : MonoBehaviour
         
         if(transform.position.x < generationPoint.position.x)
         {
-            distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+            size = (int)levelSizeDesign.Dequeue();
+            height = (int)levelHeightDesign.Dequeue();
+            distance = (int)levelDistanceDesign.Dequeue();
 
-            platformSelector = Random.Range(0, theObjectPools.Length);
+            //THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
+            //distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+            if (distanceBetweenMin + distance > distanceBetweenMax)
+            {
+                distanceBetween = distanceBetweenMax;
+            } 
+            else
+            {
+                distanceBetween = distanceBetweenMin + distance;
+            }
 
-            heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+            //THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
+            //platformSelector = Random.Range(0, theObjectPools.Length);
+            platformSelector = size;
 
-            if(heightChange > maxHeight)
+            //THIS CODE WILL CHANGE IT TO A RANDOME LEVEL
+            //heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+            heightChange = minHeight + height;
+
+            if (heightChange > maxHeight)
             {
                 heightChange = maxHeight;
             }

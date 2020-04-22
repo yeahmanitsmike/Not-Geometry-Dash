@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         }
 
         thePlayer.transform.position = PlayerStartPoint;
-        platformGenerator.position = platformStartPoint;
+        //platformGenerator.position = platformStartPoint;
         thePlayer.gameObject.SetActive(true);
         backgroundMusic.Play();
 
