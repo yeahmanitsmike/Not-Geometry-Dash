@@ -9,6 +9,7 @@ public class ScoreCounter : MonoBehaviour
 	public Text textBox;
 	public static int score;
     public int iterations;
+	public static bool pause;
 
 	void Start()
 	{
@@ -18,12 +19,15 @@ public class ScoreCounter : MonoBehaviour
 
 	void Update()
 	{
-		iterations++;
-		if (iterations > 60)
+		if (!pause)
 		{
-			score++;
-			iterations = 0;
+			iterations++;
+			if (iterations > 60)
+			{
+				score++;
+				iterations = 0;
+			}
+			textBox.text = "Score: " + score.ToString();
 		}
-		textBox.text = "Score: " + score.ToString();
 	}
 }
