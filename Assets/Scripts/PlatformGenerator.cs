@@ -87,8 +87,9 @@ public class PlatformGenerator : MonoBehaviour
             height = (int)levelHeightDesign.Dequeue();
             distance = (int)levelDistanceDesign.Dequeue();
 
-            //THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
-            //distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+            /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
+            *distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+            */
             if (distanceBetweenMin + distance > distanceBetweenMax)
             {
                 distanceBetween = distanceBetweenMax;
@@ -98,12 +99,27 @@ public class PlatformGenerator : MonoBehaviour
                 distanceBetween = distanceBetweenMin + distance;
             }
 
-            //THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
-            //platformSelector = Random.Range(0, theObjectPools.Length);
-            platformSelector = size;
+            /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
+            *platformSelector = Random.Range(0, theObjectPools.Length);
+            */
 
-            //THIS CODE WILL CHANGE IT TO A RANDOME LEVEL
-            //heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+            if (size > 3)
+            {
+                platformSelector = 3;
+            }
+            else if (size < 3)
+            {
+                platformSelector = 0;
+            }
+            else
+            {
+                platformSelector = size;
+            }
+
+            /*THIS CODE WILL CHANGE IT TO A RANDOME LEVEL
+            *heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+            */
+
             heightChange = minHeight + height;
 
             if (heightChange > maxHeight)
