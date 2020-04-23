@@ -9,6 +9,7 @@ public class CoinPoints : MonoBehaviour
 
     void Start()
     {
+		scoreIncrease = 10;
         theScoreCounter = FindObjectOfType<ScoreCounter>();
         soundEffect = GameObject.Find("CoinSound").GetComponent<AudioSource>();
     }
