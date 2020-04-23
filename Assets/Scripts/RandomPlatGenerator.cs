@@ -95,40 +95,18 @@ public class RandomPlatGenerator : MonoBehaviour
                 distance = (int)levelDistanceDesign.Dequeue();
 
                 /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
-                *distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
                 */
-                if (distanceBetweenMin + distance > distanceBetweenMax)
-                {
-                    distanceBetween = distanceBetweenMax;
-                }
-                else
-                {
-                    distanceBetween = distanceBetweenMin + distance;
-                }
-
+                distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+               
                 /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
-                *platformSelector = Random.Range(0, theObjectPools.Length);
-                */
-
-                if (size > 3)
-                {
-                    platformSelector = 3;
-                }
-                else if (size < 3)
-                {
-                    platformSelector = 0;
-                }
-                else
-                {
-                    platformSelector = size;
-                }
-
+                */platformSelector = Random.Range(0, theObjectPools.Length);
+                
                 /*THIS CODE WILL CHANGE IT TO A RANDOM LEVEL
-                *heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
-                */
-
+                */heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+                
+                /*
                 heightChange = minHeight + height;
-
+                */
                 if (heightChange > maxHeight)
                 {
                     heightChange = maxHeight;
@@ -137,11 +115,12 @@ public class RandomPlatGenerator : MonoBehaviour
                 {
                     heightChange = minHeight;
                 }
-
+                
                 transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
 
                 //Instantiate(/*thePlatform*/ thePlatforms[platformSelector], transform.position, transform.rotation);
                 GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();
+                //newPlatform.AddComponent<PlatformDestroyer>();
 
                 newPlatform.transform.position = transform.position;
                 newPlatform.transform.rotation = transform.rotation;
@@ -185,7 +164,7 @@ public class RandomPlatGenerator : MonoBehaviour
             }
             else
             {
-                if (!isEndPlatformSpawn)
+                if (isEndPlatformSpawn)
                 {
                     transform.position = new Vector3(transform.position.x + 6, transform.position.y, transform.position.z);
                     Instantiate(endPlatform, transform.position, transform.rotation);
