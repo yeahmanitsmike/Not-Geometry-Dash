@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73eb104f5f0e4338b57533c7abde87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreIncrease: 100
+  scoreIncrease: 10
   soundEffect: {fileID: 0}
 --- !u!212 &6139446626843690212
 SpriteRenderer:

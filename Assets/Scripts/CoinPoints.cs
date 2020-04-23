@@ -4,12 +4,12 @@ public class CoinPoints : MonoBehaviour
 {
 
     public int scoreIncrease;
-    private ScoreCounter theScoreCounter;
+    private ScoreCounter scoreCounter;
     public AudioSource soundEffect;
 
     void Start()
     {
-        theScoreCounter = FindObjectOfType<ScoreCounter>();
+        scoreCounter = FindObjectOfType<ScoreCounter>();
         soundEffect = GameObject.Find("CoinSound").GetComponent<AudioSource>();
     }
 
@@ -17,7 +17,7 @@ public class CoinPoints : MonoBehaviour
 	{
         if (other.gameObject.name == "Player")
 		{
-            theScoreCounter.AddScore(scoreIncrease);
+            scoreCounter.AddScore(scoreIncrease);
             soundEffect.Play();
             gameObject.SetActive(false);
 		}

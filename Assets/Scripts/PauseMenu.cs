@@ -4,6 +4,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     private bool isPause;
+    public AudioSource backgroundMusic;
 
     void Update()
 	{
@@ -24,15 +25,17 @@ public class PauseMenu : MonoBehaviour
 	{
         isPause = true;
         Time.timeScale = 0f;
-        ScoreCounter.pause = true;
+        TimeCounter.pause = true;
         pauseMenu.SetActive(true);
+        backgroundMusic.Pause();
 	}
 
     public void ResumeGame()
 	{
         isPause = false;
         Time.timeScale = 1f;
-        ScoreCounter.pause = false;
+        TimeCounter.pause = false;
         pauseMenu.SetActive(false);
+        backgroundMusic.Play();
     }
 }

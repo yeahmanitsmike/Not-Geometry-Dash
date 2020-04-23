@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
 
         thePlayer.gameObject.SetActive(false);
-        ScoreCounter.pause = true;
+        TimeCounter.pause = true;
         yield return new WaitForSeconds(1.0f);
 
         platformList = FindObjectsOfType<PlatformDestroyer>();
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         //platformGenerator.position = platformStartPoint;
         thePlayer.gameObject.SetActive(true);
         backgroundMusic.Play();
-        ScoreCounter.pause = false;
+        TimeCounter.pause = false;
 
     }
 }

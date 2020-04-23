@@ -35,9 +35,10 @@ public class PlayerController : MonoBehaviour
     public AudioSource enemyDeathSound;
     public AudioSource fallDeathSound;
 
-    /* victory
+    // victory
     public bool isOnPlatform;
-    public LayerMask endPlatformLayer; */
+    public LayerMask endPlatformLayer;
+    private string currentSceneName;
 
     private void Start()
     {
@@ -49,6 +50,10 @@ public class PlayerController : MonoBehaviour
         moveSpeedStore = moveSpeed;
         speedMilestoneCountStore = speedMilestoneCount;
         speedIncreaseMilestoneStore = speedIncreaseMilestone;
+
+        currentSceneName = SceneManager.GetActiveScene().name;
+
+        // sounds
         enemyDeathSound = GameObject.Find("EnemyDeathSound").GetComponent<AudioSource>();
         jumpSound = GameObject.Find("JumpSound").GetComponent<AudioSource>();
         fallDeathSound = GameObject.Find("FallDeathSound").GetComponent<AudioSource>();
@@ -97,12 +102,15 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetFloat("Speed", rigidBody.velocity.x);
         myAnimator.SetBool("Grounded", isGrounded);
 
-        /*
+        // Go to next scene when at the end
         isOnPlatform = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, endPlatformLayer);
-        if (isOnPlatform)
+        if (isOnPlatform && (currentSceneName == "Level1"))
         {
-            SceneManager.LoadScene("Level1");
-        } */
+            SceneManager.LoadScene("Level2");
+        } else if (isOnPlatform && (currentSceneName == "Level2"))
+        {
+            SceneManager.LoadScene("LevelVictory");
+        }
 
     }
 
@@ -110,6 +118,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && !isGrounded)
         {
+            ScoreCounter.score += 25;
             other.gameObject.SetActive(false);
             enemyDeathSound.Play();
 
