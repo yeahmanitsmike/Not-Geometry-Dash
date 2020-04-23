@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LivesCounter : MonoBehaviour
 {
@@ -14,6 +13,14 @@ public class LivesCounter : MonoBehaviour
 		textBox = GetComponent<Text>();
 		lives = 3;
 	}
+
+    void Update()
+    {
+		if (lives == 0)
+        {
+			SceneManager.LoadScene("GameOver");
+		}
+    }
 
     public static void UpdateLives()
 	{
