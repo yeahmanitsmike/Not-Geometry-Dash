@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource backgroundMusic;
     public AudioSource jumpSound;
+    public AudioSource enemyDeathSound;
+    public AudioSource fallDeathSound;
 
     /* victory
     public bool isOnPlatform;
@@ -47,6 +49,9 @@ public class PlayerController : MonoBehaviour
         moveSpeedStore = moveSpeed;
         speedMilestoneCountStore = speedMilestoneCount;
         speedIncreaseMilestoneStore = speedIncreaseMilestone;
+        enemyDeathSound = GameObject.Find("EnemyDeathSound").GetComponent<AudioSource>();
+        jumpSound = GameObject.Find("JumpSound").GetComponent<AudioSource>();
+        fallDeathSound = GameObject.Find("FallDeathSound").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -67,6 +72,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpStrength);
+            jumpSound.Play();
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -105,6 +111,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && !isGrounded)
         {
             other.gameObject.SetActive(false);
+            enemyDeathSound.Play();
+
         }
         if (other.gameObject.tag == "KillObject" || (other.gameObject.tag == "Enemy" && isGrounded))
         {
@@ -113,7 +121,7 @@ public class PlayerController : MonoBehaviour
             speedMilestoneCount = speedMilestoneCountStore;
             speedIncreaseMilestone = speedIncreaseMilestoneStore;
             backgroundMusic.Stop();
-            
+            fallDeathSound.Play();
         }
     }
 }
