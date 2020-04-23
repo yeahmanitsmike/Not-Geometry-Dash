@@ -1,17 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
     public GameObject pooledObject;
-
     public int pooledAmount;
-
     List<GameObject> pooledObjects;
     
-
-    // Start is called before the first frame update
     void Start()
     {
         pooledObjects = new List<GameObject>();
@@ -22,7 +17,6 @@ public class ObjectPooler : MonoBehaviour
             obj.SetActive(false);
             pooledObjects.Add(obj);
         }
-
 
     }
     

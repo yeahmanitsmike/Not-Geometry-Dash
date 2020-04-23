@@ -33,4 +33,5 @@ public class ScoreCounter : MonoBehaviour
 	{
 		score += pointsToAdd;
 	}
+
 }

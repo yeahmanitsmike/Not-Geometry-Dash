@@ -360,10 +360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9471b8564a0474a4db4f57790316f8b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
   speedMulitplier: 1
   speedIncreaseMilestone: 100
-  jumpStrength: 10
+  jumpStrength: 11
   jumpTime: 0.25
   isGrounded: 0
   groundLayer:
@@ -1284,7 +1284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thePlatform: {fileID: 8582175902100430728, guid: 9cfd2c57db2d8004ab495a40b52194e8,
     type: 3}
-  endPlatform: {fileID: 1877177932340267050, guid: 6ecb5cc1251855c4e8035f2e0dea1589,
+  endPlatform: {fileID: 9146493686776595495, guid: 8b5c0417d64f240779360aec4a9010db,
     type: 3}
   generationPoint: {fileID: 1817610746}
   distanceBetween: 0

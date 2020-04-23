@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         StartCoroutine("RestartCo");
-        ScoreCounter.score = 0;
         LivesCounter.UpdateLives();
     }
 

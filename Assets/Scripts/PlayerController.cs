@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
-   // private new Collider2D collider;
+    // private new Collider2D collider;
 
     //Player movement vars
     public float moveSpeed = 5f;
@@ -32,10 +33,14 @@ public class PlayerController : MonoBehaviour
     public AudioSource backgroundMusic;
     public AudioSource jumpSound;
 
+    /* victory
+    public bool isOnPlatform;
+    public LayerMask endPlatformLayer; */
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-       // collider = GetComponent<Collider2D>();
+        // collider = GetComponent<Collider2D>();
         myAnimator = GetComponent<Animator>();
         jumpTimeCounter = jumpTime;
         speedMilestoneCount = speedIncreaseMilestone;
@@ -45,7 +50,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    { 
+    {
         rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
 
         //isGrounded = Physics2D.IsTouchingLayers(collider, groundLayer);
@@ -86,11 +91,22 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetFloat("Speed", rigidBody.velocity.x);
         myAnimator.SetBool("Grounded", isGrounded);
 
+        /*
+        isOnPlatform = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, endPlatformLayer);
+        if (isOnPlatform)
+        {
+            SceneManager.LoadScene("Level1");
+        } */
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "KillObject")
+        if (other.gameObject.tag == "Enemy" && !isGrounded)
+        {
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "KillObject" || (other.gameObject.tag == "Enemy" && isGrounded))
         {
             theGameManager.Restart();
             moveSpeed = moveSpeedStore;

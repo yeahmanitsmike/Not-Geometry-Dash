@@ -18,6 +18,7 @@ public class LivesCounter : MonoBehaviour
     {
 		if (lives == 0)
         {
+			PlayerPrefs.SetString("score", ScoreCounter.score.ToString());
 			SceneManager.LoadScene("GameOver");
 		}
     }
