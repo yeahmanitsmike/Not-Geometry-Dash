@@ -51,12 +51,12 @@ public class PlayerController : MonoBehaviour
         speedMilestoneCountStore = speedMilestoneCount;
         speedIncreaseMilestoneStore = speedIncreaseMilestone;
 
-        currentSceneName = SceneManager.GetActiveScene().name;
-
         // sounds
         enemyDeathSound = GameObject.Find("EnemyDeathSound").GetComponent<AudioSource>();
         jumpSound = GameObject.Find("JumpSound").GetComponent<AudioSource>();
         fallDeathSound = GameObject.Find("FallDeathSound").GetComponent<AudioSource>();
+
+        currentSceneName = SceneManager.GetActiveScene().name;
     }
 
     private void Update()
@@ -104,13 +104,19 @@ public class PlayerController : MonoBehaviour
 
         // Go to next scene when at the end
         isOnPlatform = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, endPlatformLayer);
-        if (isOnPlatform && (currentSceneName == "Level1"))
+        if (isOnPlatform && currentSceneName == "Level1")
         {
             SceneManager.LoadScene("Level2");
-        } else if (isOnPlatform && (currentSceneName == "Level2"))
-        {
-            SceneManager.LoadScene("LevelVictory");
         }
+        else if (isOnPlatform && currentSceneName == "Level2")
+        {
+            SceneManager.LoadScene("Level3");
+        }
+        else if (isOnPlatform && currentSceneName == "Level3")
+        {
+            SceneManager.LoadScene("GameEnd");
+        }
+
 
     }
 
